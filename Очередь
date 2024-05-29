@@ -1,0 +1,72 @@
+// Создаем класс узла очереди
+class Node {
+    int data;
+    Node next;
+
+    public Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+// Создаем класс Очередь
+class Queue {
+    private Node front;
+    private Node rear;
+
+    public Queue() {
+        this.front = null;
+        this.rear = null;
+    }
+
+    // Метод для добавления элемента в конец очереди
+    public void enqueue(int data) {
+        Node newNode = new Node(data);
+
+        if (rear == null) {
+            front = newNode;
+            rear = newNode;
+        } else {
+            rear.next = newNode;
+            rear = newNode;
+        }
+    }
+
+    // Метод для удаления элемента из начала очереди
+    public void dequeue() {
+        if (front == null) {
+            System.out.println("Очередь пуста");
+        } else {
+            front = front.next;
+            if (front == null) {
+                rear = null;
+            }
+        }
+    }
+
+    // Метод для получения элемента из начала очереди
+    public int peek() {
+        if (front == null) {
+            System.out.println("Очередь пуста");
+            return -1;
+        } else {
+            return front.data;
+        }
+    }
+}
+
+// Пример использования
+public class Main {
+    public static void main(String[] args) {
+        Queue queue = new Queue();
+
+        queue.enqueue(10);
+        queue.enqueue(20);
+        queue.enqueue(30);
+
+        System.out.println("Первый элемент в очереди: " + queue.peek());
+
+        queue.dequeue();
+        System.out.println("Первый элемент после удаления: " + queue.peek());
+    }
+}
