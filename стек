@@ -1,1 +1,50 @@
+public class MyStack {
+    private int maxSize;  // Максимальный размер стека
+    private int top;      // Индекс верхнего элемента стека
+    private int[] stackArray;  // Массив для хранения элементов стека
 
+    public MyStack(int size) {
+        maxSize = size;
+        stackArray = new int[maxSize];
+        top = -1;  // Изначально стек пуст
+    }
+
+    // Добавление элемента в стек
+    public void push(int value) {
+        if (top < maxSize - 1) {
+            stackArray[++top] = value;  // Увеличиваем top и добавляем элемент
+        } else {
+            System.out.println("Стек заполнен, невозможно добавить элемент.");
+        }
+    }
+
+    // Удаление и возврат верхнего элемента стека
+    public int pop() {
+        if (top >= 0) {
+            return stackArray[top--];  // Возвращаем элемент и уменьшаем top
+        } else {
+            System.out.println("Стек пуст, невозможно извлечь элемент.");
+            return -1;
+        }
+    }
+
+    // Просмотр верхнего элемента стека
+    public int peek() {
+        if (top >= 0) {
+            return stackArray[top];
+        } else {
+            System.out.println("Стек пуст, нет элементов для просмотра.");
+            return -1;
+        }
+    }
+
+    // Проверка, пуст ли стек
+    public boolean isEmpty() {
+        return (top == -1);
+    }
+
+    // Проверка, заполнен ли стек
+    public boolean isFull() {
+        return (top == maxSize - 1);
+    }
+}
